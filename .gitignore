@@ -12,7 +12,7 @@ build/
 # gradle
 .gradle/
 gradle-app.setting
-
+app/.cxx/
 
 local.properties
 

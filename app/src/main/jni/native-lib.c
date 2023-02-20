@@ -1,11 +1,12 @@
-#include "com_xcm91_relation_ndkapp_NdkJniUtils.h"
+#include "com_ndkapp_NdkJni.h"
+
 #include <android/log.h>
 #define LOG_TAG "System.out"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
 
-JNIEXPORT jstring JNICALL Java_com_xcm91_relation_ndkapp_NdkJniUtils_getStringFromNative(JNIEnv *env, jobject obj,jint x,jint y)
+JNIEXPORT jstring JNICALL Java_com_ndkapp_NdkJni_getStringFromNative(JNIEnv *env, jobject obj,jint x,jint y)
 
 {
 
@@ -29,15 +30,16 @@ JNIEXPORT jstring JNICALL Java_com_xcm91_relation_ndkapp_NdkJniUtils_getStringFr
     // java 反射
     //1 . 找到java代码的 class文件
     //    jclass      (*FindClass)(JNIEnv*, const char*);
-    jclass dpclazz = (*env)->FindClass(env,"com/xcm91/relation/ndkapp/NdkJniUtils");
+    jclass dpclazz = (*env)->FindClass(env,"com/ndkapp/NdkJni");
 
     //2 寻找class里面的方法
     //   jmethodID   (*GetMethodID)(JNIEnv*, jclass, const char*, const char*);
     jmethodID method1 = (*env)->GetMethodID(env,dpclazz,"helloFromJava","()V");
     //3 .调用这个方法
     //    void        (*CallVoidMethod)(JNIEnv*, jobject, jmethodID, ...);
+     LOGI("调用开始");
+
     (*env)->CallVoidMethod(env,obj,method1);
-    LOGI("调用开始");
 
 
 
@@ -47,9 +49,7 @@ JNIEXPORT jstring JNICALL Java_com_xcm91_relation_ndkapp_NdkJniUtils_getStringFr
 
 
     jmethodID method5 = (*env)->GetStaticMethodID(env, dpclazz,"add", "(II)I");
-    LOGI("调用ADD方法的结果count=%d",(*env)->CallStaticIntMethod(env,dpclazz,method5,x,y));
-
-
+  LOGI("调用ADD方法的结果count=%d",(*env)->CallStaticIntMethod(env,dpclazz,method5,x,y));
 
     char buf[] = "HEllO JNI";
     return (*env)->NewStringUTF(env,buf);

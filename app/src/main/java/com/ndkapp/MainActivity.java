@@ -1,9 +1,10 @@
-package com.xcm91.relation.ndkapp;
+package com.ndkapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
         this.sampletext = (TextView) findViewById(R.id.sample_text);
 
 
-        wvview.loadUrl("http://www.baidu.com/");
+        wvview.loadUrl("https://www.baidu.com/");
 
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
 
-        tv.setText(new NdkJniUtils().getStringFromNative(1,2));
+        tv.setText(new NdkJni().getStringFromNative(1,2));
 
     }
 
