@@ -30,7 +30,7 @@ JNIEXPORT jstring JNICALL Java_com_ndkapp_Ndk_getStringFromNative(JNIEnv *env, j
  return env->NewStringUTF("Hello.Jni~!~!") ;
 }
 4，创建Android.mk
-
+/```
 #Android.mk
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
@@ -41,6 +41,7 @@ LOCAL_SRC_FILES :=native-lib.c
 LOCAL_LDLIBS += -llog
 
 include $(BUILD_SHARED_LIBRARY)
+``/
 创建 Applicatio.mk
 
 APP_PLATFORM := android-16
